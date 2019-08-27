@@ -29,7 +29,7 @@ int inputOperator()
     return (int)input;
 }
 
-int checkInput(int input, Phase phase)
+Judge checkInput(int input, Phase phase)
 {
     // qは終了
     if(input == 113){
@@ -40,7 +40,7 @@ int checkInput(int input, Phase phase)
 
     }
 
-    return 0;
+    return OK;
 }
 
 int calculate(int input1, int input2, int ope)
