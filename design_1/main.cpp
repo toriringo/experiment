@@ -15,37 +15,50 @@ enum Phase
     OutputResult
 };
 
-int inputNum()
+double inputNum()
 {
-    int input;
+    double input;
     std::cin >> input;
     return input;
 }
 
-int inputOperator()
+char inputOperator()
 {
     char input;
     std::cin >> input;
-    return (int)input;
+    return input;
 }
 
-Judge checkInput(int input, Phase phase)
+Judge checkNum(const double input, const Phase phase)
 {
     // qは終了
-    if(input == 113){
+    // doubleにqを入力しても113にならないので、対策が必要
+    if(static_cast<int>(input) == 113){
         exit(0);
     }
 
     if(phase == InputNum1 || phase == InputNum2){
-
     }
 
     return OK;
 }
 
-int calculate(int input1, int input2, int ope)
+Judge checkOperator(const char input, const Phase phase)
 {
-    int result;
+    // qは終了
+    if(static_cast<int>(input) == 113){
+        exit(0);
+    }
+
+    if(phase == InputNum1 || phase == InputNum2){
+    }
+
+    return OK;
+}
+
+double calculate(const double input1, const double input2, const char ope)
+{
+    double result;
 
     if(ope == 43){
         result = input1 + input2;
@@ -60,7 +73,7 @@ int calculate(int input1, int input2, int ope)
     return result;
 }
 
-void outputResult(int result)
+void outputResult(double result)
 {
     std::cout << result << std::endl;
 }
@@ -68,22 +81,22 @@ void outputResult(int result)
 int main()
 {
     Phase phase;
-    int input1, input2;
-    int ope;
-    int result;
+    double input1, input2;
+    char ope;
+    double result;
 
     while(1){
         phase = InputNum1;
         input1 = inputNum();
-        checkInput(input1, phase);
+        checkNum(input1, phase);
 
         phase = InputOperator;
         ope = inputOperator();
-        checkInput(ope, phase);
+        checkOperator(ope, phase);
 
         phase = InputNum2;
         input2 = inputNum();
-        checkInput(input2, phase);
+        checkNum(input2, phase);
 
         phase = Calculate;
         result = calculate(input1, input2, ope);
